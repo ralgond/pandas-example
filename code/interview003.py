@@ -17,4 +17,6 @@ print(t1.shape)
 
 t1 = t1.drop_duplicates()
 
-print(t1.shape)
+t1.rename(columns={'用户行为发生时间':'用户交易时间'}, inplace=True)
+
+print(t1)
