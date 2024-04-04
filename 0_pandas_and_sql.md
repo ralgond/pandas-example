@@ -1,5 +1,6 @@
 |标签|Pandas|SQL|
 |----|------|---|
+|区间函数|t1 = pd.read_excel("../data/c4/3判断成绩及格与否.xlsx", sheet_name="学生成绩表")<br>t1['是否及格'] = np.where(t1['成绩'] < 60, '不及格', '及格')|SELECT 学号,课程号,成绩,<br>(case when 成绩>= 60 then '及格'<br>when 成绩 < 60 then '不及格' else null<br>end) as 是否及格<br>FROM 学生成绩表|
 |窗口函数|t1['排名'] = t1.groupby("学号")['成绩'].rank(ascending=False, method='first')|SELECT *, row_number() over (partition by 学号 order by 成绩 desc) as 排名|
 |窗口函数|t1['排名'] = t1.groupby("学号")['成绩'].rank(ascending=False, method='min')|SELECT *, rank() over (partition by 学号 order by 成绩 desc) as 排名|
 |窗口函数|t1['排名'] = t1.groupby("学号")['成绩'].rank(ascending=False, method='dense')|SELECT *, dense_rank() over (partition by 学号 order by 成绩 desc) as 排名|
